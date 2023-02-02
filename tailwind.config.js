@@ -18,9 +18,25 @@ module.exports = {
         veryDarkBlue: 'hsl(233, 12%, 13%)',
         veryPaleRed: 'hsl(13, 100%, 96%)',
         veryLightGray: 'hsl(0, 0%, 98%)'
-      }, 
+      },
 
-      
+      keyframes: {
+        'open-menu': {
+          '0%': { transform: 'scaleY(0)' },
+          '80%': { transform: 'scaleY(1.1)' },
+          '100%': { transform: 'scaleY(1)' }
+        },
+
+        'close-menu': {
+          '0%': { transform: 'scaleY(1)' },
+          '100%': { transform: 'scaleY(0)' }
+        }
+      },
+
+      animation: {
+        'open-menu': 'open-menu 0.6s ease-in-out forwards',
+        'close-menu': 'close-menu 0.6s ease-in- reverse'
+      }
     }
   },
   plugins: []

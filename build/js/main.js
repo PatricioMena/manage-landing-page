@@ -1,13 +1,25 @@
-const btn = document.getElementById('menu-btn');
-const nav = document.getElementById('menu');
+const initApp = () => {
+  const hamburgerBtn = document.getElementById('hamburger-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const header = document.querySelector('header');
 
-btn.addEventListener('click', () => {
-  btn.classList.toggle('open');
-  nav.classList.toggle('flex');
-  nav.classList.toggle('hidden');
-});
+  const toggleMenu = () => {
+    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('flex');
+    hamburgerBtn.classList.toggle('toggle-btn');
+    header.classList.toggle('bg-white');
+  };
 
-// Swiper
+  hamburgerBtn.addEventListener('click', toggleMenu);
+  mobileMenu.addEventListener('click', toggleMenu);
+};
+
+document.addEventListener('DOMContentLoaded', initApp);
+
+///////////////////////////////////////////////
+// Swiper //
+//////////////////////////////////////////////
+
 const swiper = new Swiper('.swiper', {
   loop: true,
   speed: 400,
@@ -20,6 +32,10 @@ const swiper = new Swiper('.swiper', {
   keyboard: {
     enabled: true
   },
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false
+  },
   pagination: {
     el: '.swiper-pagination'
   },
@@ -28,16 +44,25 @@ const swiper = new Swiper('.swiper', {
   breakpoints: {
     // when window width is >= 480px
     300: {
-      slidesPerView: 1
+      slidesPerView: 1,
+      autoplay: false
     },
 
     // when window width is >= 640px
     768: {
-      slidesPerView: 2
+      slidesPerView: 2,
+      autoplay: {
+        delay: 6000,
+        disableOnInteraction: false
+      }
     },
 
     976: {
-      slidesPerView: 3
+      slidesPerView: 3,
+      autoplay: {
+        delay: 6000,
+        disableOnInteraction: false
+      }
     }
   }
 });
@@ -61,7 +86,7 @@ const stickyNav = (entries) => {
 };
 
 const observer = new IntersectionObserver(stickyNav, {
-  threshold: 0.75
+  threshold: 0.5
 });
 
 observer.observe(hero);
